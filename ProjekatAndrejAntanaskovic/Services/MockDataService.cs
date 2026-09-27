@@ -54,7 +54,7 @@ namespace ProjekatAndrejAntanaskovic.Services
             return Task.FromResult(uslugaList);
         }
 
-        public Task<List<Termin>> GetTerminzaDatumAsync(DateTime datum)
+        public Task<List<Termin>> GetTerminZaDatumAsync(DateTime datum)
         {
             var zauzeti = terminList.Where(t => t.DatumVreme.Date == datum.Date && t.Status == StatusTermina.Zakazan).ToList();
             return Task.FromResult(zauzeti);
@@ -69,7 +69,6 @@ namespace ProjekatAndrejAntanaskovic.Services
         public Task<List<Termin>> GetIstorijuZaUredjajAsync(string uredjajId)
         {
             var istorija = terminList.Where(t => t.UredjajId == uredjajId).OrderByDescending(t => t.DatumVreme).ToList();
-
             return Task.FromResult(istorija);
         }
 
@@ -80,7 +79,7 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public async Task<List<DateTime>> GetSlobodniSlotoviAsync(DateTime datum, int trajanjeMinuti)
         {
-            var zauzetiTermini = await GetTerminzaDatumAsync(datum);
+            var zauzetiTermini = await GetTerminZaDatumAsync(datum);
             var slobodniSlotovi = new List<DateTime>();
 
             DateTime pocetak = datum.Date.Add(radnoVreme.PocetakRadnogVremena);
