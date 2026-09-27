@@ -34,7 +34,8 @@ namespace ProjekatAndrejAntanaskovic.Services
                     TelefonKlijenta = "0641234567",
                     UredjajId = "test-device-id",
                     DatumVreme = DateTime.Today.AddHours(10),
-                    Status = StatusTermina.Zakazan
+                    Status = StatusTermina.Zakazan,
+                    TrajanjeMinuti = uslugaList[0].TrajanjeMinuti
                 },
                 new Termin
                 {
@@ -44,7 +45,8 @@ namespace ProjekatAndrejAntanaskovic.Services
                     TelefonKlijenta = "0600789456",
                     UredjajId = "test-device-id2",
                     DatumVreme = DateTime.Today.AddHours(11),
-                    Status = StatusTermina.Zakazan
+                    Status = StatusTermina.Zakazan,
+                    TrajanjeMinuti = uslugaList[2].TrajanjeMinuti
                 }
             };
             radnoVreme = new RadnoVreme();
@@ -89,7 +91,7 @@ namespace ProjekatAndrejAntanaskovic.Services
 
             while(trenutniSlot.AddMinutes(trajanjeMinuti) <= kraj)
             {
-                bool jeZauzet = zauzetiTermini.Any(t => trenutniSlot < t.DatumVreme.AddMinutes(30) && trenutniSlot.AddMinutes(trajanjeMinuti) > t.DatumVreme);
+                bool jeZauzet = zauzetiTermini.Any(t => trenutniSlot < t.DatumVreme.AddMinutes(t.TrajanjeMinuti) && trenutniSlot.AddMinutes(trajanjeMinuti) > t.DatumVreme);
 
                 if (!jeZauzet && trenutniSlot > DateTime.Now)
                 {

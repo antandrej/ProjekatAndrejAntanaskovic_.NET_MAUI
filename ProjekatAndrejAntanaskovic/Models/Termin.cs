@@ -24,5 +24,6 @@ namespace ProjekatAndrejAntanaskovic.Models
         public DateTime DatumVreme { get; set; }
         public StatusTermina Status { get; set; } = StatusTermina.Zakazan;
         public DateTime KreiranDatum { get; set; } = DateTime.Now;
+        public int TrajanjeMinuti { get; set; }
     }
 }
