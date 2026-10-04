@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjekatAndrejAntanaskovic.Views.ReservationPage"
+    Title="Rezervacija">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                x:Name="ServiceLabel"
+                FontSize="22"
+                FontAttributes="Bold"/>
+
+            <Label
+                x:Name="DateTimeLabel"
+                FontSize="18"/>
+
+            <Entry
+                x:Name="NameEntry"
+                Placeholder="Ime i prezime"/>
+
+            <Entry
+                x:Name="PhoneEntry"
+                Placeholder="Telefon"
+                Keyboard="Telephone"/>
+
+            <Button
+                Text="Potvrdi rezervaciju"
+                Clicked="ConfirmReservation_Clicked"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

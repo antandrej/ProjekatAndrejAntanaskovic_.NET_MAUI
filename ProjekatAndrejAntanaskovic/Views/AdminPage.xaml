@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjekatAndrejAntanaskovic.Views.AdminPage"
+    Title="Administracija">
+
+    <Grid
+        Padding="10"
+        RowDefinitions="Auto,Auto,*">
+
+        <Button
+            Grid.Row="0"
+            Text="Upravljanje uslugama"
+            Margin="0,0,0,10"
+            Clicked="ManageServices_Clicked"/>
+
+        <Button
+            Grid.Row="1"
+            Text="Radno vreme"
+            Margin="0,0,0,10"
+            Clicked="WorkTime_Clicked"/>
+
+            <CollectionView
+            Grid.Row="2"
+            x:Name="AdminCollectionView">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Frame
+                        Margin="5"
+                        Padding="10">
+
+                        <VerticalStackLayout
+                            Spacing="8">
+
+                            <Label
+                                Text="{Binding ImeKlijenta}"
+                                FontAttributes="Bold"
+                                FontSize="18"/>
+
+                            <Label
+                                Text="{Binding TelefonKlijenta}"/>
+
+                            <Label
+                                Text="{Binding NazivUsluge}"/>
+
+                            <Label
+                                Text="{Binding DatumVreme, StringFormat='Datum: {0:dd.MM.yyyy HH:mm}'}"/>
+
+                            <Label
+                                Text="{Binding Status}"/>
+
+                            <HorizontalStackLayout
+                                Spacing="5">
+
+                                <Button
+                                    Text="Potvrdi"
+                                    BackgroundColor="Green"
+                                    TextColor="White"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="Potvrdi_Clicked"/>
+
+                                <Button
+                                    Text="Završen"
+                                    BackgroundColor="DodgerBlue"
+                                    TextColor="White"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="Zavrsen_Clicked"/>
+
+                                <Button
+                                    Text="Otkaži"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="Otkazi_Clicked"/>
+
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Frame>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjekatAndrejAntanaskovic.Views.EditServicePage">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                x:Name="PageTitleLabel"
+                Text="Nova usluga"
+                FontSize="24"
+                FontAttributes="Bold"/>
+
+            <Entry
+                x:Name="NameEntry"
+                Placeholder="Naziv usluge" />
+
+            <Entry
+                x:Name="PriceEntry"
+                Placeholder="Cena"
+                Keyboard="Numeric" />
+
+            <Entry
+                x:Name="DurationEntry"
+                Placeholder="Trajanje u minutima"
+                Keyboard="Numeric" />
+
+            <Editor
+                x:Name="DescriptionEditor"
+                Placeholder="Opis usluge"
+                AutoSize="TextChanges"
+                HeightRequest="120" />
+
+            <Button
+                Text="Sačuvaj"
+                Clicked="Save_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

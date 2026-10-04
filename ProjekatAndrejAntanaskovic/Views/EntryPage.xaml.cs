@@ -32,13 +32,7 @@ public partial class EntryPage : ContentPage
 
         if (enteredPassword == AdminPassword)
         {
-            await DisplayAlert(
-                "Uspešno",
-                "Dobrodošli admin.",
-                "OK");
-
-            // kasnije:
-            // await Navigation.PushAsync(new AdminPage());
+            await Navigation.PushAsync(new AdminPage());
         }
         else
         {

@@ -1,5 +1,6 @@
 using ProjekatAndrejAntanaskovic.Models;
 using ProjekatAndrejAntanaskovic.Services;
+using ProjekatAndrejAntanaskovic.Views;
 
 namespace ProjekatAndrejAntanaskovic.Views;
 
@@ -11,7 +12,7 @@ public partial class ServicesPage : ContentPage
     {
         InitializeComponent();
 
-        _dataService = new MockDataService();
+        _dataService = AppServices.DataService;
     }
 
     protected override async void OnAppearing()
@@ -27,14 +28,18 @@ public partial class ServicesPage : ContentPage
     {
         Button button = (Button)sender;
 
-        string serviceId = button.CommandParameter.ToString();
+        var selectedService =
+        button.CommandParameter as Usluga;
 
-        await DisplayAlert(
-            "Izabrana usluga",
-            $"ID usluge: {serviceId}",
-            "OK");
+        if (selectedService != null)
+        {
+            await Navigation.PushAsync(
+                new BookingPage(selectedService));
+        }
+    }
 
-        // kasnije:
-        // await Navigation.PushAsync(new BookingPage(serviceId));
+    private async void MyReservationsButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MyReservationsPage());
     }
 }

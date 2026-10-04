@@ -1,0 +1,66 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjekatAndrejAntanaskovic.Views.AdminServicesPage"
+    Title="Usluge">
+
+    <Grid RowDefinitions="Auto,*"
+          Padding="10">
+
+        <Button
+            Grid.Row="0"
+            Text="Dodaj novu uslugu"
+            Clicked="AddService_Clicked"/>
+
+        <CollectionView
+            Grid.Row="1"
+            x:Name="ServicesCollectionView">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Frame Margin="5">
+
+                        <VerticalStackLayout>
+
+                            <Label
+                                Text="{Binding Naziv}"
+                                FontAttributes="Bold"
+                                FontSize="18"/>
+
+                            <Label
+                                Text="{Binding Cena,
+                                StringFormat='Cena: {0} din'}"/>
+
+                            <Label
+                                Text="{Binding TrajanjeMinuti,
+                                StringFormat='Trajanje: {0} min'}"/>
+
+                            <HorizontalStackLayout>
+
+                                <Button
+                                    Text="Izmeni"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="Edit_Clicked"/>
+
+                                <Button
+                                    Text="Obriši"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="Delete_Clicked"/>
+
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Frame>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

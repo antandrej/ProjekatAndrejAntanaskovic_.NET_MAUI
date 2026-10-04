@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjekatAndrejAntanaskovic.Views.BookingPage"
+    Title="Zakazivanje">
+
+    <Grid Padding="15"
+          RowDefinitions="Auto,Auto,Auto,*">
+
+        <Label
+            x:Name="ServiceNameLabel"
+            Grid.Row="0"
+            FontSize="24"
+            FontAttributes="Bold"/>
+
+        <DatePicker
+            x:Name="BookingDatePicker"
+            Grid.Row="1"
+            Margin="0,15,0,0"
+            DateSelected="BookingDatePicker_DateSelected"/>
+
+        <Label
+            Grid.Row="2"
+            Margin="0,15,0,10"
+            Text="Slobodni termini:"
+            FontAttributes="Bold"/>
+
+        <CollectionView
+            x:Name="SlotsCollectionView"
+            Grid.Row="3"
+            SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Button
+                        Text="{Binding}"
+                        Margin="0.5"
+                        Clicked="SlotButton_Clicked"
+                        CommandParameter="{Binding}" />
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

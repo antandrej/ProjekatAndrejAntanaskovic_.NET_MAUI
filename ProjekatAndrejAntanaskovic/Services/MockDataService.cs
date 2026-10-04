@@ -58,13 +58,34 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task<List<Termin>> GetTerminZaDatumAsync(DateTime datum)
         {
-            var zauzeti = terminList.Where(t => t.DatumVreme.Date == datum.Date && t.Status == StatusTermina.Zakazan).ToList();
+            var zauzeti = terminList.Where(t =>
+                t.DatumVreme.Date == datum.Date &&
+                (
+                    t.Status == StatusTermina.Zakazan ||
+                    t.Status == StatusTermina.Potvrdjen
+                ))
+                .ToList();
+
             return Task.FromResult(zauzeti);
         }
 
+
         public Task<bool> ZakaziTerminAsync(Termin noviTermin)
         {
+            bool postojiPreklapanje = terminList.Any(t =>
+                t.Status != StatusTermina.Otkazan &&
+                noviTermin.DatumVreme <
+                    t.DatumVreme.AddMinutes(t.TrajanjeMinuti) &&
+                noviTermin.DatumVreme.AddMinutes(noviTermin.TrajanjeMinuti) >
+                    t.DatumVreme);
+
+            if (postojiPreklapanje)
+            {
+                return Task.FromResult(false);
+            }
+
             terminList.Add(noviTermin);
+
             return Task.FromResult(true);
         }
 
@@ -102,6 +123,87 @@ namespace ProjekatAndrejAntanaskovic.Services
             }
 
             return slobodniSlotovi;
+        }
+
+        public Task PromeniStatusAsync(string terminId, StatusTermina noviStatus)
+        {
+            var termin = terminList
+                .FirstOrDefault(x => x.Id == terminId);
+
+            if (termin != null)
+            {
+                termin.Status = noviStatus;
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public Task DodajUsluguAsync(Usluga usluga)
+        {
+            uslugaList.Add(usluga);
+
+            return Task.CompletedTask;
+        }
+
+        public Task ObrisiUsluguAsync(string id)
+        {
+            var usluga =
+                uslugaList.FirstOrDefault(x => x.Id == id);
+
+            if (usluga != null)
+            {
+                uslugaList.Remove(usluga);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public Task IzmeniUsluguAsync(Usluga nova)
+        {
+            var postojeca =
+                uslugaList.FirstOrDefault(x => x.Id == nova.Id);
+
+            if (postojeca != null)
+            {
+                postojeca.Naziv = nova.Naziv;
+                postojeca.Cena = nova.Cena;
+                postojeca.Opis = nova.Opis;
+                postojeca.TrajanjeMinuti = nova.TrajanjeMinuti;
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public Task<List<Usluga>> GetSveUslugeAsync()
+        {
+            return Task.FromResult(uslugaList.ToList());
+        }
+
+        public Task<Usluga?> GetUslugaByIdAsync(string id)
+        {
+            var usluga =
+                uslugaList.FirstOrDefault(x => x.Id == id);
+
+            return Task.FromResult(usluga);
+        }
+
+        public Task<RadnoVreme> GetRadnoVremeAsync()
+        {
+            return Task.FromResult(radnoVreme);
+        }
+
+        public Task SacuvajRadnoVremeAsync(RadnoVreme novoRadnoVreme)
+        {
+            radnoVreme.PocetakRadnogVremena =
+                novoRadnoVreme.PocetakRadnogVremena;
+
+            radnoVreme.KrajRadnogVremena =
+                novoRadnoVreme.KrajRadnogVremena;
+
+            radnoVreme.IntervalMinuti =
+                novoRadnoVreme.IntervalMinuti;
+
+            return Task.CompletedTask;
         }
     }
 }
