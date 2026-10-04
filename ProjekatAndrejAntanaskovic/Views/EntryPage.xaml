@@ -8,20 +8,16 @@
         Padding="30"
         Spacing="20"
         VerticalOptions="Center">
-
         <Label
             Text="Barber Booking"
             FontSize="28"
             HorizontalOptions="Center"
             FontAttributes="Bold"/>
-
         <Button
             Text="Nastavi kao gost"
             Clicked="GuestButton_Clicked"/>
-
         <Label
             Text="Admin šifra"/>
-
         <Entry
             x:Name="AdminPasswordEntry"
             Placeholder="Unesite šifru"
@@ -29,13 +25,11 @@
             MaxLength="20"
             ClearButtonVisibility="WhileEditing"
             TextChanged="AdminPasswordEntry_TextChanged"/>
-
         <Button
             x:Name="AdminButton"
             Text="Admin ulaz"
             IsEnabled="False"
             Clicked="AdminButton_Clicked"/>
-
     </VerticalStackLayout>
-
+  
 </ContentPage>

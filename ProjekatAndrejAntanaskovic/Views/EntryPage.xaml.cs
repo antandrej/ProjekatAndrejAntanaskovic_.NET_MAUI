@@ -1,5 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using ProjekatAndrejAntanaskovic.Services;
+using ProjekatAndrejAntanaskovic.Views;
+
 
 namespace ProjekatAndrejAntanaskovic.Views;
 
@@ -21,14 +23,7 @@ public partial class EntryPage : ContentPage
 
     private async void GuestButton_Clicked(object sender, EventArgs e)
     {
-        // kasnije će ovde biti prelazak na ServicesPage
-
-        await DisplayAlert(
-            "Gost",
-            "Uspešno ste ušli kao gost.",
-            "OK");
-
-        // await Navigation.PushAsync(new ServicesPage());
+        await Navigation.PushAsync(new ServicesPage());
     }
 
     private async void AdminButton_Clicked(object sender, EventArgs e)

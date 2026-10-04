@@ -18,10 +18,10 @@ namespace ProjekatAndrejAntanaskovic.Services
         {
             uslugaList = new List<Usluga>
             { 
-                new Usluga { Naziv = "Musko Sisanje", TrajanjeMinuti = 30, Cena = 1200, Opis = "Klasično ili moderno šišanje makazama i mašinicom." },
-                new Usluga { Naziv = "Pranje i stilizovanje", TrajanjeMinuti = 30, Cena = 850, Opis = "Pranje kose uz masažu glave i oblikovanje frizure." },
-                new Usluga { Naziv = "Uredjivanje brade", TrajanjeMinuti = 30, Cena = 900, Opis = "Oblikovanje brade trimerom i brijanje kontura." },
-                new Usluga { Naziv = "Komplet (Sisanje + Brada)", TrajanjeMinuti = 60, Cena = 1800, Opis = "Puni tretman šišanja i kompletno sređivanje brade." }
+                new Usluga { Id = "USL001", Naziv = "Musko Sisanje", TrajanjeMinuti = 30, Cena = 1200, Opis = "Klasično ili moderno šišanje makazama i mašinicom." },
+                new Usluga { Id = "USL002", Naziv = "Pranje i stilizovanje", TrajanjeMinuti = 30, Cena = 850, Opis = "Pranje kose uz masažu glave i oblikovanje frizure." },
+                new Usluga { Id = "USL003", Naziv = "Uredjivanje brade", TrajanjeMinuti = 30, Cena = 900, Opis = "Oblikovanje brade trimerom i brijanje kontura." },
+                new Usluga { Id = "USL004", Naziv = "Komplet (Sisanje + Brada)", TrajanjeMinuti = 60, Cena = 1800, Opis = "Puni tretman šišanja i kompletno sređivanje brade." }
             };
 
             terminList = new List<Termin>
