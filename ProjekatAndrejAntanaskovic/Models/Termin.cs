@@ -10,6 +10,7 @@ namespace ProjekatAndrejAntanaskovic.Models
     {
         Zakazan,
         Završen,
+        Potvrdjen,
         Otkazan
     }
 

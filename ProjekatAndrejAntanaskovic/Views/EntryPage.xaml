@@ -1,0 +1,41 @@
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjekatAndrejAntanaskovic.Views.EntryPage"
+    Title="Početna">
+
+    <VerticalStackLayout
+        Padding="30"
+        Spacing="20"
+        VerticalOptions="Center">
+
+        <Label
+            Text="Barber Booking"
+            FontSize="28"
+            HorizontalOptions="Center"
+            FontAttributes="Bold"/>
+
+        <Button
+            Text="Nastavi kao gost"
+            Clicked="GuestButton_Clicked"/>
+
+        <Label
+            Text="Admin šifra"/>
+
+        <Entry
+            x:Name="AdminPasswordEntry"
+            Placeholder="Unesite šifru"
+            IsPassword="True"
+            MaxLength="20"
+            ClearButtonVisibility="WhileEditing"
+            TextChanged="AdminPasswordEntry_TextChanged"/>
+
+        <Button
+            x:Name="AdminButton"
+            Text="Admin ulaz"
+            IsEnabled="False"
+            Clicked="AdminButton_Clicked"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,4 +1,6 @@
-﻿namespace ProjekatAndrejAntanaskovic
+﻿using ProjekatAndrejAntanaskovic.Views;
+
+namespace ProjekatAndrejAntanaskovic
 {
     public partial class App : Application
     {
@@ -6,7 +8,8 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(
+                new EntryPage());
         }
     }
 }
