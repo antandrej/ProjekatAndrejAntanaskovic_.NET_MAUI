@@ -20,27 +20,21 @@ public partial class AdminPage : ContentPage
 
     private async Task RefreshData()
     {
-        var sviTermini =
-            await AppServices.DataService.SviTerminiAsync();
+        var sviTermini = await AppServices.DataService.SviTerminiAsync();
 
-        AdminCollectionView.ItemsSource =
-            sviTermini;
+        AdminCollectionView.ItemsSource = sviTermini;
     }
 
     private async void Potvrdi_Clicked(object sender,EventArgs e)
     {
         Button button = (Button)sender;
 
-        string terminId =
-            button.CommandParameter?.ToString();
+        string terminId = button.CommandParameter?.ToString();
 
         if (string.IsNullOrEmpty(terminId))
             return;
 
-        await AppServices.DataService
-            .PromeniStatusAsync(
-                terminId,
-                StatusTermina.Potvrdjen);
+        await AppServices.DataService.PromeniStatusAsync(terminId, StatusTermina.Potvrdjen);
 
         await RefreshData();
     }
@@ -49,16 +43,12 @@ public partial class AdminPage : ContentPage
     {
         Button button = (Button)sender;
 
-        string terminId =
-            button.CommandParameter?.ToString();
+        string terminId = button.CommandParameter?.ToString();
 
         if (string.IsNullOrEmpty(terminId))
             return;
 
-        await AppServices.DataService
-            .PromeniStatusAsync(
-                terminId,
-                StatusTermina.Završen);
+        await AppServices.DataService.PromeniStatusAsync(terminId, StatusTermina.Završen);
 
         await RefreshData();
     }
@@ -67,29 +57,23 @@ public partial class AdminPage : ContentPage
     {
         Button button = (Button)sender;
 
-        string terminId =
-            button.CommandParameter?.ToString();
+        string terminId = button.CommandParameter?.ToString();
 
         if (string.IsNullOrEmpty(terminId))
             return;
 
-        await AppServices.DataService
-            .PromeniStatusAsync(
-                terminId,
-                StatusTermina.Otkazan);
+        await AppServices.DataService.PromeniStatusAsync(terminId, StatusTermina.Otkazan);
 
         await RefreshData();
     }
 
     private async void ManageServices_Clicked(object sender,EventArgs e)
     {
-        await Navigation.PushAsync(
-            new AdminServicesPage());
+        await Navigation.PushAsync(new AdminServicesPage());
     }
 
     private async void WorkTime_Clicked(object sender,EventArgs e)
     {
-        await Navigation.PushAsync(
-        new WorkTimePage());
+        await Navigation.PushAsync(new WorkTimePage());
     }
 }

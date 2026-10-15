@@ -58,26 +58,13 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task<List<Termin>> GetTerminZaDatumAsync(DateTime datum)
         {
-            var zauzeti = terminList.Where(t =>
-                t.DatumVreme.Date == datum.Date &&
-                (
-                    t.Status == StatusTermina.Zakazan ||
-                    t.Status == StatusTermina.Potvrdjen
-                ))
-                .ToList();
-
+            var zauzeti = terminList.Where(t => t.DatumVreme.Date == datum.Date && (t.Status == StatusTermina.Zakazan || t.Status == StatusTermina.Potvrdjen)).ToList();
             return Task.FromResult(zauzeti);
         }
 
-
         public Task<bool> ZakaziTerminAsync(Termin noviTermin)
         {
-            bool postojiPreklapanje = terminList.Any(t =>
-                t.Status != StatusTermina.Otkazan &&
-                noviTermin.DatumVreme <
-                    t.DatumVreme.AddMinutes(t.TrajanjeMinuti) &&
-                noviTermin.DatumVreme.AddMinutes(noviTermin.TrajanjeMinuti) >
-                    t.DatumVreme);
+            bool postojiPreklapanje = terminList.Any(t => t.Status != StatusTermina.Otkazan && noviTermin.DatumVreme < t.DatumVreme.AddMinutes(t.TrajanjeMinuti) && noviTermin.DatumVreme.AddMinutes(noviTermin.TrajanjeMinuti) > t.DatumVreme);
 
             if (postojiPreklapanje)
             {
@@ -127,8 +114,7 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task PromeniStatusAsync(string terminId, StatusTermina noviStatus)
         {
-            var termin = terminList
-                .FirstOrDefault(x => x.Id == terminId);
+            var termin = terminList.FirstOrDefault(x => x.Id == terminId);
 
             if (termin != null)
             {
@@ -147,8 +133,7 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task ObrisiUsluguAsync(string id)
         {
-            var usluga =
-                uslugaList.FirstOrDefault(x => x.Id == id);
+            var usluga = uslugaList.FirstOrDefault(x => x.Id == id);
 
             if (usluga != null)
             {
@@ -160,8 +145,7 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task IzmeniUsluguAsync(Usluga nova)
         {
-            var postojeca =
-                uslugaList.FirstOrDefault(x => x.Id == nova.Id);
+            var postojeca = uslugaList.FirstOrDefault(x => x.Id == nova.Id);
 
             if (postojeca != null)
             {
@@ -181,8 +165,7 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task<Usluga?> GetUslugaByIdAsync(string id)
         {
-            var usluga =
-                uslugaList.FirstOrDefault(x => x.Id == id);
+            var usluga = uslugaList.FirstOrDefault(x => x.Id == id);
 
             return Task.FromResult(usluga);
         }
@@ -194,14 +177,11 @@ namespace ProjekatAndrejAntanaskovic.Services
 
         public Task SacuvajRadnoVremeAsync(RadnoVreme novoRadnoVreme)
         {
-            radnoVreme.PocetakRadnogVremena =
-                novoRadnoVreme.PocetakRadnogVremena;
+            radnoVreme.PocetakRadnogVremena = novoRadnoVreme.PocetakRadnogVremena;
 
-            radnoVreme.KrajRadnogVremena =
-                novoRadnoVreme.KrajRadnogVremena;
+            radnoVreme.KrajRadnogVremena = novoRadnoVreme.KrajRadnogVremena;
 
-            radnoVreme.IntervalMinuti =
-                novoRadnoVreme.IntervalMinuti;
+            radnoVreme.IntervalMinuti = novoRadnoVreme.IntervalMinuti;
 
             return Task.CompletedTask;
         }

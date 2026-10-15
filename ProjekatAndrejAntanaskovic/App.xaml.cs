@@ -8,8 +8,7 @@ namespace ProjekatAndrejAntanaskovic
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(
-                new EntryPage());
+            MainPage = new NavigationPage(new EntryPage());
         }
     }
 }

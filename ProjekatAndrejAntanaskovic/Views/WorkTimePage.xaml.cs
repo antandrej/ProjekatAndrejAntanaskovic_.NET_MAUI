@@ -14,26 +14,18 @@ public partial class WorkTimePage : ContentPage
     {
         base.OnAppearing();
 
-        var radnoVreme =
-            await AppServices.DataService
-                .GetRadnoVremeAsync();
+        var radnoVreme = await AppServices.DataService.GetRadnoVremeAsync();
 
-        StartTimePicker.Time =
-            radnoVreme.PocetakRadnogVremena;
+        StartTimePicker.Time = radnoVreme.PocetakRadnogVremena;
 
-        EndTimePicker.Time =
-            radnoVreme.KrajRadnogVremena;
+        EndTimePicker.Time = radnoVreme.KrajRadnogVremena;
 
-        IntervalEntry.Text =
-            radnoVreme.IntervalMinuti.ToString();
+        IntervalEntry.Text = radnoVreme.IntervalMinuti.ToString();
     }
 
     private async void Save_Clicked(object sender,EventArgs e)
     {
-        if (!int.TryParse(
-            IntervalEntry.Text,
-            out int interval))
-        {
+        if (!int.TryParse(IntervalEntry.Text,out int interval)) {
             await DisplayAlert(
                 "Greška",
                 "Interval nije validan.",
@@ -42,17 +34,12 @@ public partial class WorkTimePage : ContentPage
             return;
         }
 
-        RadnoVreme novoRadnoVreme =
-            new()
-            {
-                PocetakRadnogVremena =
-                    StartTimePicker.Time,
+        RadnoVreme novoRadnoVreme = new() {
+                PocetakRadnogVremena = StartTimePicker.Time,
 
-                KrajRadnogVremena =
-                    EndTimePicker.Time,
+                KrajRadnogVremena = EndTimePicker.Time,
 
-                IntervalMinuti =
-                    interval
+                IntervalMinuti = interval
             };
 
         await AppServices.DataService.SacuvajRadnoVremeAsync(novoRadnoVreme);

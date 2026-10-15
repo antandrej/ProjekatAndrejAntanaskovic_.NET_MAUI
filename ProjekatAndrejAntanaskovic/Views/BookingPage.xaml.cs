@@ -17,8 +17,7 @@ public partial class BookingPage : ContentPage
 
         _selectedService = selectedService;
 
-        ServiceNameLabel.Text =
-            $"{selectedService.Naziv} ({selectedService.Cena} din)";
+        ServiceNameLabel.Text = $"{selectedService.Naziv} ({selectedService.Cena} din)";
     }
 
     protected override async void OnAppearing()
@@ -30,17 +29,12 @@ public partial class BookingPage : ContentPage
 
     private async Task LoadAvailableSlots()
     {
-        var slots = await _dataService.GetSlobodniSlotoviAsync(
-            BookingDatePicker.Date,
-            _selectedService.TrajanjeMinuti);
+        var slots = await _dataService.GetSlobodniSlotoviAsync(BookingDatePicker.Date, _selectedService.TrajanjeMinuti);
 
-        SlotsCollectionView.ItemsSource =
-            slots.Select(x => x.ToString("HH:mm")).ToList();
+        SlotsCollectionView.ItemsSource = slots.Select(x => x.ToString("HH:mm")).ToList();
     }
 
-    private async void BookingDatePicker_DateSelected(
-        object sender,
-        DateChangedEventArgs e)
+    private async void BookingDatePicker_DateSelected(object sender, DateChangedEventArgs e)
     {
         await LoadAvailableSlots();
     }
@@ -49,16 +43,10 @@ public partial class BookingPage : ContentPage
     {
         Button button = (Button)sender;
 
-        string selectedTime =
-        button.CommandParameter.ToString();
+        string selectedTime = button.CommandParameter.ToString();
 
-        DateTime selectedDateTime =
-        DateTime.Parse(
-        $"{BookingDatePicker.Date:yyyy-MM-dd} {selectedTime}");
+        DateTime selectedDateTime = DateTime.Parse($"{BookingDatePicker.Date:yyyy-MM-dd} {selectedTime}");
 
-        await Navigation.PushAsync(
-        new ReservationPage(
-        _selectedService,
-        selectedDateTime));
+        await Navigation.PushAsync(new ReservationPage(_selectedService, selectedDateTime));
     }
 }

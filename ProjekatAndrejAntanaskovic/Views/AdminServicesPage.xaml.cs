@@ -18,9 +18,7 @@ public partial class AdminServicesPage : ContentPage
 
     private async Task RefreshData()
     {
-        var usluge =
-            await AppServices.DataService
-                .GetSveUslugeAsync();
+        var usluge =await AppServices.DataService.GetSveUslugeAsync();
 
         ServicesCollectionView.ItemsSource = usluge;
     }
@@ -29,8 +27,7 @@ public partial class AdminServicesPage : ContentPage
     {
         Button button = (Button)sender;
 
-        string? id =
-            button.CommandParameter?.ToString();
+        string? id = button.CommandParameter?.ToString();
 
         if (string.IsNullOrEmpty(id))
             return;
@@ -44,8 +41,7 @@ public partial class AdminServicesPage : ContentPage
         if (!potvrda)
             return;
 
-        await AppServices.DataService
-            .ObrisiUsluguAsync(id);
+        await AppServices.DataService.ObrisiUsluguAsync(id);
 
         await RefreshData();
     }
@@ -54,19 +50,16 @@ public partial class AdminServicesPage : ContentPage
     {
         Button button = (Button)sender;
 
-        string? id =
-            button.CommandParameter?.ToString();
+        string? id =button.CommandParameter?.ToString();
 
         if (string.IsNullOrEmpty(id))
             return;
 
-        await Navigation.PushAsync(
-            new EditServicePage(id));
+        await Navigation.PushAsync(new EditServicePage(id));
     }
 
     private async void AddService_Clicked(object sender,EventArgs e)
     {
-         await Navigation.PushAsync(
-             new EditServicePage());
+         await Navigation.PushAsync(new EditServicePage());
     }
 }

@@ -16,9 +16,7 @@ public partial class EntryPage : ContentPage
 
     private void AdminPasswordEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
-        AdminButton.IsEnabled =
-            !string.IsNullOrWhiteSpace(AdminPasswordEntry.Text)
-            && AdminPasswordEntry.Text.Length >= 4;
+        AdminButton.IsEnabled = !string.IsNullOrWhiteSpace(AdminPasswordEntry.Text) && AdminPasswordEntry.Text.Length >= 4;
     }
 
     private async void GuestButton_Clicked(object sender, EventArgs e)

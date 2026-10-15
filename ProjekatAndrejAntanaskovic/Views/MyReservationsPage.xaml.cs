@@ -13,14 +13,9 @@ public partial class MyReservationsPage : ContentPage
     {
         base.OnAppearing();
 
-        var deviceId =
-            DeviceService.GetDeviceId();
+        var deviceId = DeviceService.GetDeviceId();
+        var rezervacije = await AppServices.DataService.GetIstorijuZaUredjajAsync(deviceId);
 
-        var rezervacije =
-            await AppServices.DataService
-                .GetIstorijuZaUredjajAsync(deviceId);
-
-        ReservationsCollectionView.ItemsSource =
-            rezervacije;
+        ReservationsCollectionView.ItemsSource = rezervacije;
     }
 }

@@ -15,7 +15,6 @@ public partial class EditServicePage : ContentPage
     public EditServicePage(string serviceId)
     {
         InitializeComponent();
-
         _serviceId = serviceId;
     }
 
@@ -28,23 +27,15 @@ public partial class EditServicePage : ContentPage
 
         PageTitleLabel.Text = "Izmena usluge";
 
-        var usluga =
-            await AppServices.DataService
-                .GetUslugaByIdAsync(_serviceId);
+        var usluga = await AppServices.DataService.GetUslugaByIdAsync(_serviceId);
 
         if (usluga == null)
             return;
 
         NameEntry.Text = usluga.Naziv;
-
-        PriceEntry.Text =
-            usluga.Cena.ToString();
-
-        DurationEntry.Text =
-            usluga.TrajanjeMinuti.ToString();
-
-        DescriptionEditor.Text =
-            usluga.Opis;
+        PriceEntry.Text = usluga.Cena.ToString();
+        DurationEntry.Text = usluga.TrajanjeMinuti.ToString();
+        DescriptionEditor.Text = usluga.Opis;
     }
 
     private async void Save_Clicked(object sender,EventArgs e)
@@ -84,36 +75,26 @@ public partial class EditServicePage : ContentPage
             Usluga novaUsluga = new()
             {
                 Id = Guid.NewGuid().ToString(),
-
                 Naziv = NameEntry.Text,
-
                 Cena = cena,
-
                 TrajanjeMinuti = trajanje,
-
                 Opis = DescriptionEditor.Text
             };
 
-            await AppServices.DataService
-                .DodajUsluguAsync(novaUsluga);
+            await AppServices.DataService.DodajUsluguAsync(novaUsluga);
         }
         else
         {
             Usluga izmenjena = new()
             {
                 Id = _serviceId,
-
                 Naziv = NameEntry.Text,
-
                 Cena = cena,
-
                 TrajanjeMinuti = trajanje,
-
                 Opis = DescriptionEditor.Text
             };
 
-            await AppServices.DataService
-                .IzmeniUsluguAsync(izmenjena);
+            await AppServices.DataService.IzmeniUsluguAsync(izmenjena);
         }
 
         await DisplayAlert(

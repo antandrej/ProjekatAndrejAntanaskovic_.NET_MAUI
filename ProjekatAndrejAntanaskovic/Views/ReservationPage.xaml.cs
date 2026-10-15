@@ -10,9 +10,7 @@ public partial class ReservationPage : ContentPage
 
     private readonly MockDataService _dataService;
 
-    public ReservationPage(
-        Usluga usluga,
-        DateTime datumVreme)
+    public ReservationPage(Usluga usluga, DateTime datumVreme)
     {
         InitializeComponent();
 
@@ -21,11 +19,9 @@ public partial class ReservationPage : ContentPage
 
         _dataService = AppServices.DataService;
 
-        ServiceLabel.Text =
-            $"{usluga.Naziv} - {usluga.Cena} din";
+        ServiceLabel.Text = $"{usluga.Naziv} - {usluga.Cena} din";
 
-        DateTimeLabel.Text =
-            datumVreme.ToString("dd.MM.yyyy HH:mm");
+        DateTimeLabel.Text = datumVreme.ToString("dd.MM.yyyy HH:mm");
     }
 
     private async void ConfirmReservation_Clicked(object sender, EventArgs e)

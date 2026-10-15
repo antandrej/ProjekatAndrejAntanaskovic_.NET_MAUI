@@ -28,13 +28,11 @@ public partial class ServicesPage : ContentPage
     {
         Button button = (Button)sender;
 
-        var selectedService =
-        button.CommandParameter as Usluga;
+        var selectedService = button.CommandParameter as Usluga;
 
         if (selectedService != null)
         {
-            await Navigation.PushAsync(
-                new BookingPage(selectedService));
+            await Navigation.PushAsync(new BookingPage(selectedService));
         }
     }
 
